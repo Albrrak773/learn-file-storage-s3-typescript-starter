@@ -59,7 +59,7 @@ export async function handlerUploadVideo(cfg: ApiConfig, req: BunRequest) {
   const key = `${aspectRatio}/${videoId}.mp4`;
   await uploadVideoToS3(cfg, key, processedFilePath, "video/mp4");
 
-  const videoURL = `${key}`;
+  const videoURL = `https://${cfg.s3CfDistribution}/${key}`;
   video.videoURL = videoURL;
   updateVideo(cfg.db, video);
 
